@@ -14,19 +14,23 @@ hex2rgb() {
 }
 
 gen_gtk() {
-	local dark=0 scheme="prefer-light" v
-	[[ "$THEME_MODE" == "dark" ]] && { dark=1; scheme="prefer-dark"; }
+	local scheme="prefer-light" v
+	[[ "$THEME_MODE" == "dark" ]] && scheme="prefer-dark"
 
 	if [[ ! -d "/usr/share/themes/$GTK_THEME" && ! -d "$HOME/.local/share/themes/$GTK_THEME" ]]; then
 		warn "GTK theme '$GTK_THEME' is not installed, GTK apps keep their current theme"
 		return 0
 	fi
 
+	# prefer-dark stays 0: every dark theme we use is dark in its main stylesheet,
+	# and GTK3 apps read this flag only at startup, so with it on they would keep
+	# loading the *dark* variant of a light theme (Nordic-Polar) after a live switch.
+	# GTK4/libadwaita apps and browsers follow color-scheme below instead.
 	for v in 3.0 4.0; do
 		write_file "$HOME/.config/gtk-$v/settings.ini" <<EOF
 [Settings]
 gtk-theme-name=$GTK_THEME
-gtk-application-prefer-dark-theme=$dark
+gtk-application-prefer-dark-theme=0
 gtk-icon-theme-name=Adwaita
 gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=24
