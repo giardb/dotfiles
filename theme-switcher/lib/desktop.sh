@@ -121,13 +121,14 @@ indicator-thickness=10
 show-failed-attempts
 ignore-empty-password
 
-# Idle
+# Idle: ring in the main accent, like the focused window title bar;
+# typed keys flash in the text color so they show on the ring.
 inside-color=$(hex "$BG0" cc)
-ring-color=$(hex "$ACCENT2")
+ring-color=$(hex "$ACCENT")
 line-color=00000000
 separator-color=00000000
 text-color=$(hex "$FG1")
-key-hl-color=$(hex "$ACCENT")
+key-hl-color=$(hex "$FG1")
 bs-hl-color=$(hex "$ORANGE")
 
 # Checking the password
