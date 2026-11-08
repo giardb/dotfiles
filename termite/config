@@ -6,7 +6,7 @@
 #cell_width_scale = 1.0
 clickable_url = true
 #dynamic_title = true
-font = Monospace 9
+font = GeistMono Nerd Font Mono 9
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -53,42 +53,40 @@ scrollbar = off
 # background = rgba(63, 63, 63, 0.9)
 
 [colors]
-cursor = #d8dee9
-cursor_foreground = #2e3440
+cursor = #c0caf5
+cursor_foreground = #1a1b26
 
-foreground = #d8dee9
-foreground_bold = #d8dee9
-# background = rgba(46, 52, 64, 0.9)
-background = rgba(53, 59, 73, 0.9)
+foreground = #c0caf5
+foreground_bold = #c0caf5
+background = rgba(26, 27, 38, 0.92)
 
-highlight = #4c566a
-
-color0  = #3b4252
-color1  = #bf616a
-color2  = #a3be8c
-color3  = #ebcb8b
-color4  = #81a1c1
-color5  = #b48ead
-color6  = #88c0d0
-color7  = #e5e9f0
-color8  = #4c566a
-color9  = #bf616a
-color10 = #a3be8c
-color11 = #ebcb8b
-color12 = #81a1c1
-color13 = #b48ead
-color14 = #8fbcbb
-color15 = #eceff4
+highlight = #414868
+color0  = #15161e
+color1  = #f7768e
+color2  = #9ece6a
+color3  = #e0af68
+color4  = #7aa2f7
+color5  = #bb9af7
+color6  = #7dcfff
+color7  = #a9b1d6
+color8  = #414868
+color9  = #f7768e
+color10 = #9ece6a
+color11 = #e0af68
+color12 = #7aa2f7
+color13 = #bb9af7
+color14 = #7dcfff
+color15 = #c0caf5
 
 [hints]
-#font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+font = GeistMono Nerd Font Mono 9
+foreground = #a9b1d6
+background = #24283b
+active_foreground = #1a1b26
+active_background = #7dcfff
+padding = 2
+border = #414868
+border_width = 0.5
+roundness = 2.0
 
 # vim: ft=dosini cms=#%s

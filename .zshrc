@@ -112,12 +112,12 @@ export XDG_CURRENT_DESKTOP=sway
 alias todo="$EDITOR ~/.todo"
 alias e="nvim"
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux new -s && exit;
-fi
-#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux new -s && exit;
+# fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #  tmux a -t default || exec tmux new -s default && exit;
-#fi
+# fi
 
 # bun completions
 [ -s "/home/giab/.bun/_bun" ] && source "/home/giab/.bun/_bun"
@@ -137,15 +137,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source $HOME/.zshd/zsh-kubectl-prompt/kubectl.zsh
 
-function right_prompt() {
-  local color="blue"
 
-  if [[ "$ZSH_KUBECTL_USER" =~ "admin" ]]; then
-    color=red
-  fi
-
-  echo "%{$fg[$color]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
-}
-RPROMPT='$(right_prompt)'
+source "/home/giab/.k3d_completion"

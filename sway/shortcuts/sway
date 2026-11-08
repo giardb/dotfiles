@@ -19,5 +19,7 @@ bindsym $mod+Shift+o scratchpad show
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
-#VIM cheatsheet
-bindsym $mod+Shift+v exec feh -x -g 800x800 ~/Downloads/vim_cheatsheet.png
+
+# Lock the screen (colors follow the theme switcher)
+## Session // Lock screen // <mod><Escape> ##
+bindsym $mod+Escape exec swaylock -f

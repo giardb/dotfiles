@@ -1,16 +1,12 @@
-@import "nord.css";
+@import "colors.css";
 
 * {
   /* border: none; */
   font-size: 12px;
-  margin: 2px;
   font-family:
-    Ubuntu Mono,
-    Cascadia Mono,
-    Product Sans,
-    Arial,
-    Helvetica,
+    "GeistMono Nerd Font Propo",
     sans-serif;
+  color: @base06;
 }
 
 window#waybar {
@@ -70,6 +66,10 @@ window#waybar {
   margin: 2px 0px 2px 0px;
 }
 
+#custom-power {
+  color: @base06;
+}
+
 #disk {
   color: @base0F;
 }
@@ -83,7 +83,7 @@ window#waybar {
 }
 
 #network {
-  color: #9da98d;
+  color: @base0E;
 }
 
 #pulseaudio {
@@ -113,7 +113,7 @@ window#waybar {
 
 @keyframes blink {
   to {
-    background-color: #eceff4;
+    background-color: @base06;
     color: @base00;
   }
 }
@@ -143,6 +143,7 @@ label:focus {
 
 #clock {
   font-size: 14px;
+  color: @base06;
 }
 
 #tray {
@@ -150,6 +151,6 @@ label:focus {
 }
 
 #bluetooth {
-  border-radius: 10 0 0 10;
-  color: green;
+  border-radius: 10px 0 0 10px;
+  color: @base0E;
 }

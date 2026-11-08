@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Theme Switcher
+Comment=Switch the color theme of sway, waybar, wofi, mako, termite, GTK and Qt
+Exec=/home/giab/.config/theme-switcher/theme-switch menu
+Icon=preferences-desktop-theme
+Categories=Settings;

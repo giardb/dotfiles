@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+# theme-switch — switch the color theme of the whole desktop at once.
+#
+#   theme-switch menu        pick a theme with wofi
+#   theme-switch list        list available themes (id<TAB>name)
+#   theme-switch apply ID    apply a theme (e.g. nord, gruvbox)
+#   theme-switch current     print the current theme id
+#
+# Themes are palette files in ~/.config/theme-switcher/themes/<id>.sh.
+# Sway, waybar, wofi, mako, termite, GTK and Qt apps all switch live
+# (Qt through the KDE platform theme, see lib/toolkits.sh).
+
+set -euo pipefail
+
+ROOT="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+THEMES_DIR="$ROOT/themes"
+STATE_FILE="$ROOT/current"
+
+warn() { printf 'theme-switch: %s\n' "$*" >&2; }
+die() { warn "$*"; notify "Theme switch failed" "$*" critical; exit 1; }
+notify() { command -v notify-send >/dev/null && notify-send -u "${3:-normal}" -a theme-switch "$1" "$2" || true; }
+
+# shellcheck source=lib/desktop.sh
+source "$ROOT/lib/desktop.sh"
+# shellcheck source=lib/toolkits.sh
+source "$ROOT/lib/toolkits.sh"
+
+theme_ids() {
+	local f
+	for f in "$THEMES_DIR"/*.sh; do
+		[[ -e "$f" ]] && basename "$f" .sh
+	done
+}
+
+theme_name() {
+	( source "$THEMES_DIR/$1.sh" && printf '%s' "$THEME_NAME" )
+}
+
+# Only accept ids that are actual palette files (no paths, no surprises).
+validate_id() {
+	local id="$1"
+	[[ "$id" =~ ^[a-z0-9-]+$ && -f "$THEMES_DIR/$id.sh" ]] || die "unknown theme '$id'"
+}
+
+load_palette() {
+	local var
+	source "$THEMES_DIR/$1.sh"
+	for var in THEME_NAME THEME_MODE GTK_THEME KDE_ICONS BG_DEEP BG0 BG1 BG2 BG3 FG0 FG1 FG2 \
+		MUTED ACCENT ACCENT2 BLUE CYAN RED ORANGE YELLOW GREEN PURPLE TERM_BG TERM_FG TERM_CURSOR WALLPAPER; do
+		[[ -n "${!var:-}" ]] || die "palette '$1' is missing $var"
+	done
+	(( ${#ANSI[@]} == 16 )) || die "palette '$1' needs 16 ANSI colors, has ${#ANSI[@]}"
+	[[ "$WALLPAPER" == \#* || -f "$WALLPAPER" ]] || die "palette '$1': wallpaper not found: $WALLPAPER"
+}
+
+cmd_apply() {
+	local id="$1"
+	validate_id "$id"
+	load_palette "$id"
+
+	gen_sway
+	gen_waybar
+	gen_wofi
+	gen_mako
+	gen_swaylock
+	gen_swaynag
+	gen_termite
+	gen_gtk
+	gen_qt
+	printf '%s\n' "$id" | write_file "$STATE_FILE"
+
+	reload_desktop
+	reload_qt
+	notify "Theme: $THEME_NAME" "Applied to sway, waybar, wofi, mako, termite, GTK and Qt."
+}
+
+cmd_list() {
+	local id
+	for id in $(theme_ids); do
+		printf '%s\t%s\n' "$id" "$(theme_name "$id")"
+	done
+}
+
+cmd_menu() {
+	local current="" choice id
+	[[ -f "$STATE_FILE" ]] && current="$(<"$STATE_FILE")"
+
+	choice="$(cmd_list | while IFS=$'\t' read -r id name; do
+		[[ "$id" == "$current" ]] && name="$name  (current)"
+		printf '%s\n' "$name"
+	done | wofi --dmenu --prompt "Theme" --insensitive --cache-file /dev/null)" || exit 0
+
+	[[ -n "$choice" ]] || exit 0 # menu closed without a pick
+	choice="${choice%  (current)}"
+	id="$(cmd_list | awk -F'\t' -v n="$choice" '$2 == n { print $1; exit }')"
+	[[ -n "$id" ]] || die "no theme named '$choice'"
+	cmd_apply "$id"
+}
+
+case "${1:-menu}" in
+	menu) cmd_menu ;;
+	list) cmd_list ;;
+	apply) [[ $# -eq 2 ]] || die "usage: theme-switch apply <id>"; cmd_apply "$2" ;;
+	current) cat "$STATE_FILE" 2>/dev/null || echo "none" ;;
+	*) die "usage: theme-switch [menu|list|apply <id>|current]" ;;
+esac

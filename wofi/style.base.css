@@ -1,0 +1,83 @@
+/* Hand-written wofi rules. theme-switch prepends the palette (@base..)
+   and writes the result to style.css — edit this file, not style.css. */
+
+/* Same font and rounding as waybar, so the launcher looks like part of the bar.
+   Pinned here so the GTK theme can't change shapes between themes. */
+* {
+  font-family: "GeistMono Nerd Font Propo", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+/* The window is transparent so #outer-box's rounded corners show. */
+window {
+  background-color: transparent;
+  color: @base05;
+}
+
+#outer-box {
+  background-color: @base00;
+  border: 2px solid @base02;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+#input {
+  background-color: @base01;
+  background-image: none;
+  color: @base05;
+  caret-color: @base05;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+}
+
+#input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+#inner-box,
+#scroll {
+  background-color: transparent;
+}
+
+#entry {
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 4px 6px;
+}
+
+#entry:selected {
+  background-color: @base02;
+  outline: none;
+}
+
+#text {
+  color: @base05;
+  padding-left: 8px;
+}
+
+/* Nordic's GTK themes also paint a box behind the selected label; keep only the row highlight. */
+#text:selected {
+  color: @base06;
+  background-color: transparent;
+  background-image: none;
+}
+
+/* Nordic's GTK themes draw a dashed scroll-edge line at the bottom of the list. */
+scrolledwindow undershoot.top,
+scrolledwindow undershoot.bottom {
+  background: none;
+}
+
+/* Hide the expander arrow on apps with extra actions so icons line up */
+expander arrow {
+  -gtk-icon-source: none;
+  min-width: 0;
+  min-height: 0;
+  margin: 0 -10px 0 0;
+  padding: 0;
+}

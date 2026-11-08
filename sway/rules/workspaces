@@ -1,14 +1,18 @@
 #
 # Rules for workspaces based on output
 #
+# Monitors are matched by name (make model serial) rather than connector
+# (DP-6, DP-7...), because connector names change between docks and reboots.
+# Each line lists outputs in order of preference.
+#   Dell: 'Dell Inc. DELL S3422DWG 4ZB3T63'  (ultrawide)
+#   ASUS: 'ASUSTek COMPUTER INC VG278 K7LMQS065714'
 
-workspace $ws1 DP-7 $laptop
-workspace $ws2 DP-6 $laptop
-workspace $ws3 $laptop DP-7
-workspace $ws4 $laptop DP-7
-workspace $ws5 $laptop DP-7
-workspace $ws6 $laptop DP-7
-workspace $ws7 $laptop DP-7
-workspace $ws8 $laptop DP-7
-workspace $ws9 $laptop DP-7
-
+workspace $ws1 output 'Dell Inc. DELL S3422DWG 4ZB3T63' $laptop
+workspace $ws2 output 'ASUSTek COMPUTER INC VG278 K7LMQS065714' $laptop
+workspace $ws3 output $laptop 'Dell Inc. DELL S3422DWG 4ZB3T63'
+workspace $ws4 output $laptop 'Dell Inc. DELL S3422DWG 4ZB3T63'
+workspace $ws5 output $laptop 'Dell Inc. DELL S3422DWG 4ZB3T63'
+workspace $ws6 output $laptop 'Dell Inc. DELL S3422DWG 4ZB3T63'
+workspace $ws7 output $laptop 'Dell Inc. DELL S3422DWG 4ZB3T63'
+workspace $ws8 output $laptop 'Dell Inc. DELL S3422DWG 4ZB3T63'
+workspace $ws9 output $laptop 'Dell Inc. DELL S3422DWG 4ZB3T63'
