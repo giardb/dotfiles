@@ -135,6 +135,8 @@ gaps inner 10
 #
 # Titlebars
 #
+# Same font as waybar, wofi, mako and the terminal
+font pango:GeistMono Nerd Font Propo 10
 #default_border pixel
 #default_floating_border pixel
 #hide_edge_borders smart
