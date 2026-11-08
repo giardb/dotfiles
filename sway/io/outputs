@@ -1,6 +1,7 @@
 ### Output configuration
 #
 # Wallpaper is set per theme by ~/.config/theme-switcher (see ~/.config/sway/theme)
+# Layout: Dell ultrawide above the laptop panel, ASUS to its left.
 
 set $laptop eDP-1
 
@@ -8,15 +9,15 @@ bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
 output eDP-1 {
-	mode 3840x2160
-	scale 2
+	mode 1920x1200
+	scale 1
 	pos 0 0
 }
 
 output 'Dell Inc. DELL S3422DWG 4ZB3T63' {   
  	mode 3440x1440@99.982Hz
  	scale 1.33    
- 	pos 1920 0
+ 	pos 0 -1080
  	adaptive_sync on
 }
 

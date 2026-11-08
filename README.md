@@ -9,6 +9,7 @@ all themed together by a theme switcher.
 |---|---|
 | `sway/`, `waybar/`, `wofi/`, `termite/`, `wallpaper/`, `theme-switcher/` | `~/.config/<same name>/` |
 | `applications/theme-switcher.desktop` | `~/.local/share/applications/` |
+| `environment.d/10-qt-theme.conf` | `~/.config/environment.d/` |
 | `.zshrc`, `.zprofile`, `.tmux.conf`, `.tmux.conf.local`, `.Xresources` | `~/` |
 
 ## Theme switcher
@@ -36,4 +37,5 @@ files are not tracked (see `.gitignore`); hand-written rules live next to them:
    `cd themes && ./install.sh -d ~/.local/share/themes -c dark`
    (Catppuccin uses `-m dark` instead of `-c dark`).
 4. Generate the theme files: `~/.config/theme-switcher/theme-switch apply tokyo-night`
-5. Log out and back in, so `.zprofile` sets `QT_QPA_PLATFORMTHEME=kde` for the session.
+5. Log out and back in, so `environment.d/10-qt-theme.conf` (and `.zprofile` for login shells)
+   sets `QT_QPA_PLATFORMTHEME=kde` for the session. GDM only reads `environment.d`.

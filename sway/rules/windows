@@ -22,6 +22,14 @@ for_window [app_id="termite"] border none
 assign [app_id="google-chrome"] $ws3
 for_window [app_id="google-chrome"] border none
 
+# Slack rules
+assign [app_id="Slack"] $ws6
+for_window [app_id="Slack"] border none
+
+# Spotify rules
+assign [class="Spotify"] $ws7
+for_window [class="Spotify"] border none
+
 # Misc rules
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 

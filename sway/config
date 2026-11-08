@@ -3,6 +3,10 @@
 
 exec mako
 
+# Complete gnome-keyring initialization & export variables
+exec gnome-keyring-daemon --start --components=secrets
+exec systemctl --user import-environment DBUS_SESSION_BUS_ADDRESS SSH_AUTH_SOCK
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
