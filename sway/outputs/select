@@ -1,0 +1,12 @@
+#!/bin/sh
+# Print the output layout file for this laptop, picked by its model
+# (DMI product name, e.g. "XPS 15 9570" -> outputs/XPS-15-9570).
+# Both laptops share the hostname, so the model is what tells them apart.
+# Laptops without their own file get outputs/default.
+dir="$(dirname "$(readlink -f "$0")")"
+model="$(tr ' /' '--' </sys/class/dmi/id/product_name 2>/dev/null)"
+if [ -n "$model" ] && [ -f "$dir/$model" ]; then
+	echo "$dir/$model"
+else
+	echo "$dir/default"
+fi

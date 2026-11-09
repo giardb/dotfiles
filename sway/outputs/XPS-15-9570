@@ -1,0 +1,21 @@
+# Dell XPS 15 9570: 4K panel, Dell ultrawide to its right, ASUS to its left.
+
+output eDP-1 {
+	mode 3840x2160
+	scale 2
+	pos 0 0
+}
+
+output 'Dell Inc. DELL S3422DWG 4ZB3T63' {
+	mode 3440x1440@99.982Hz
+	scale 1.33
+	pos 1920 0
+	adaptive_sync on
+}
+
+output 'ASUSTek COMPUTER INC VG278 K7LMQS065714' {
+	enable
+	power on
+	mode 1920x1080
+	pos -1920 0
+}

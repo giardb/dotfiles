@@ -23,6 +23,13 @@ swaylock, swaynag, termite, GTK and Qt, then reloads them all live. Those genera
 files are not tracked (see `.gitignore`); hand-written rules live next to them:
 `wofi/style.base.css` for wofi, `waybar/style.css` for waybar.
 
+## Screen layout per laptop
+
+Both laptops share the hostname, so `sway/io/outputs` includes the layout picked by
+`sway/outputs/select` from the laptop model (`/sys/class/dmi/id/product_name`, spaces
+become dashes): `sway/outputs/XPS-15-9570` here, `sway/outputs/default` for any other.
+To give another laptop its own layout, copy `default` to its model name.
+
 ## Restore on a new machine
 
 1. Copy the files to the places above.
