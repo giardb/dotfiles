@@ -58,6 +58,7 @@ window#waybar {
 #clock,
 #idle_inhibitor,
 #custom-power,
+#custom-nightlight,
 #bluetooth,
 #tray,
 #network,
@@ -160,7 +161,6 @@ label:focus {
 }
 
 #custom-nightlight {
-  padding: 0px 8px 0px 8px;
   color: @base09;
 }
 
