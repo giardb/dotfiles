@@ -3,6 +3,19 @@
 
 exec mako
 
+# Desktop services
+# Password prompt for apps that need admin rights (polkit)
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# Clipboard history for $mod+c (text and images)
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+# Volume / brightness popups (themed by theme-switcher)
+exec swayosd-server
+# Warm colors from 20:00 to 07:00, toggle from waybar or $mod+n
+exec wlsunset -S 07:00 -s 20:00 -t 4000
+# Screens off after 10 minutes idle. No locking: lock by hand with $mod+Escape.
+exec swayidle -w timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+
 # Complete gnome-keyring initialization & export variables
 exec gnome-keyring-daemon --start --components=secrets
 exec systemctl --user import-environment DBUS_SESSION_BUS_ADDRESS SSH_AUTH_SOCK

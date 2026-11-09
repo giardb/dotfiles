@@ -1,0 +1,18 @@
+#!/bin/sh
+# nightlight [toggle|status]: warm screen colors from 20:00 to 07:00 (wlsunset).
+# status prints JSON for the waybar module.
+set -eu
+case "${1:-status}" in
+	toggle)
+		if pkill -x wlsunset; then :; else
+			swaymsg -q exec "wlsunset -S 07:00 -s 20:00 -t 4000"
+		fi
+		pkill -RTMIN+8 -x waybar || true ;;
+	status)
+		if pgrep -x wlsunset >/dev/null; then
+			echo '{"text": "󰖔", "tooltip": "Night light on (20:00 to 07:00), click to turn off", "class": "on"}'
+		else
+			echo '{"text": "󰖨", "tooltip": "Night light off, click to turn on", "class": "off"}'
+		fi ;;
+	*) echo "usage: nightlight [toggle|status]" >&2; exit 2 ;;
+esac

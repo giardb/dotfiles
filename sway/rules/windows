@@ -31,6 +31,8 @@ assign [class="Spotify"] $ws7
 for_window [class="Spotify"] border none
 
 # Misc rules
+# Keep the screens on while anything is fullscreen (videos, games).
+for_window [all] inhibit_idle fullscreen
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 
 

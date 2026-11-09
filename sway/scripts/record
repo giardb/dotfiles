@@ -1,0 +1,13 @@
+#!/bin/sh
+# Toggle a screen recording of a selected area (Escape selects nothing and
+# cancels). Saves to ~/Videos. Running it again stops the recording.
+set -eu
+if pkill -INT -x wf-recorder; then
+	notify-send -a record "Recording stopped" "Saved in ~/Videos"
+	exit 0
+fi
+dir="${XDG_VIDEOS_DIR:-$HOME/Videos}"
+mkdir -p "$dir"
+geo="$(slurp)" || exit 0
+notify-send -a record "Recording" "Press \$mod+Ctrl+Print again to stop"
+exec wf-recorder -g "$geo" -f "$dir/$(date +%Y-%m-%d_%H-%M-%S).mp4"

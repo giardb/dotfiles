@@ -64,6 +64,7 @@ cmd_apply() {
 	gen_mako
 	gen_swaylock
 	gen_swaynag
+	gen_swayosd
 	gen_termite
 	gen_gtk
 	gen_qt

@@ -158,3 +158,12 @@ label:focus {
   border-radius: 10px 0 0 10px;
   color: @base0E;
 }
+
+#custom-nightlight {
+  padding: 0px 8px 0px 8px;
+  color: @base09;
+}
+
+#custom-nightlight.on {
+  color: @base0D;
+}

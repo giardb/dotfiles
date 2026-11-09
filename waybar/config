@@ -5,6 +5,7 @@
   "modules-right": [
     "bluetooth",
     "tray",
+    "custom/nightlight",
     "pulseaudio",
     "disk",
     "memory",
@@ -141,6 +142,13 @@
   "disk": {
     "interval": 30,
     "format": "{free}",
+  },
+  "custom/nightlight": {
+    "exec": "~/.config/sway/scripts/nightlight status",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "~/.config/sway/scripts/nightlight toggle"
   },
   "custom/power": {
     "format": "⏻",

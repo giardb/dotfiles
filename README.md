@@ -19,9 +19,23 @@ Catppuccin, Gruvbox or Tokyo Night (the default). Each theme is a palette file i
 `theme-switcher/themes/`; to add one, copy a palette and change its colors and wallpaper.
 
 A switch regenerates the colors for sway (borders and wallpaper), waybar, wofi, mako,
-swaylock, swaynag, termite, GTK and Qt, then reloads them all live. Those generated
+swaylock, swaynag, swayosd, termite, GTK and Qt, then reloads them all live. Those generated
 files are not tracked (see `.gitignore`); hand-written rules live next to them:
 `wofi/style.base.css` for wofi, `waybar/style.css` for waybar.
+
+## Desktop services and shortcuts
+
+Started by `sway/config`, helper scripts in `sway/scripts/`:
+
+| Feature | Keys |
+|---|---|
+| Screenshots (saved to `~/Pictures/Screenshots` and copied) | `Print` monitor, `Shift+Print` area, `$mod+Print` window, `$mod+Shift+Print` area + swappy |
+| Screen recording to `~/Videos` (again to stop) | `$mod+Ctrl+Print` |
+| Clipboard history (cliphist) | `$mod+c` |
+| Night light 20:00-07:00 (wlsunset) | `$mod+n` or the waybar moon button |
+| Volume / brightness popup (swayosd), mic mute | media keys, `XF86AudioMicMute`, `$mod+Alt+m` |
+| Password prompt for admin actions | polkit-gnome |
+| Screens off after 10 min idle, never during fullscreen; no auto-lock | lock with `$mod+Escape` |
 
 ## Screen layout per laptop
 
@@ -36,7 +50,9 @@ To give another laptop its own layout, copy `default` to its model name.
 2. Install the pieces:
    ```
    sudo pacman -S --needed sway swaybg swaylock waybar wofi mako grim slurp \
-       plasma-integration breeze breeze-icons sassc otf-geist-mono-nerd
+       plasma-integration breeze breeze-icons sassc otf-geist-mono-nerd \
+       wl-clipboard swappy playerctl brightnessctl jq swayidle \
+       polkit-gnome cliphist wlsunset swayosd wf-recorder
    yay -S termite nordic-theme nordic-polar-standard-buttons-theme
    ```
 3. Build the Catppuccin, Gruvbox and Tokyo Night GTK themes from

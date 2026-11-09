@@ -9,3 +9,4 @@ theme-switcher/current
 *.pre-*
 *.bak*
 sway/backups/
+swayosd/style.css

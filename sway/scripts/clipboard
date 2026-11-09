@@ -1,0 +1,6 @@
+#!/bin/sh
+# Pick an entry from the clipboard history (cliphist) with wofi and copy it.
+set -eu
+choice="$(cliphist list | wofi --dmenu --prompt Clipboard --insensitive --cache-file /dev/null)" || exit 0
+[ -n "$choice" ] || exit 0
+printf '%s' "$choice" | cliphist decode | wl-copy
