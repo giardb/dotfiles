@@ -23,10 +23,11 @@ window#waybar {
   background-color: transparent;
   font-size: 10px;
   margin: 0;
-  /* Fixed-width buttons: 32px each (20px + 6px padding per side), wide
-     enough for "10". Set explicitly so the GTK theme cannot resize them. */
+  /* Fixed-width buttons: 56px each (44px + 6px padding per side), so the
+     workspaces pill (10 x 56 + 16px) matches the ~570px of right-side modules.
+     Set explicitly so the GTK theme cannot resize them. */
   padding: 0 6px;
-  min-width: 20px;
+  min-width: 44px;
   color: @base06;
 }
 
@@ -74,7 +75,7 @@ window#waybar {
 #battery {
   font-size: 14px;
   background-color: @base00;
-  padding: 0px 14px 0px 14px;
+  padding: 0px 8px 0px 8px;
   margin: 2px 0px 2px 0px;
 }
 
