@@ -30,18 +30,25 @@ window#waybar {
   color: @base06;
 }
 
-#workspaces button:hover,
-#tags button:hover {
+#workspaces button:hover label,
+#tags button:hover label {
   box-shadow: inherit;
   color: @base0A;
 }
 
-#workspaces button.focused,
-#tags button.focused {
+/* Empty workspaces are dimmed, so the ones with windows stand out. */
+#workspaces button.empty label,
+#workspaces button.persistent label {
   color: @base09;
 }
 
-#workspaces button.urgent {
+/* Focused: the accent, like the focused window's title bar. */
+#workspaces button.focused label,
+#tags button.focused label {
+  color: @base07;
+}
+
+#workspaces button.urgent label {
   color: @base0B;
 }
 
