@@ -23,10 +23,10 @@ window#waybar {
   background-color: transparent;
   font-size: 10px;
   margin: 0;
-  /* Fixed-width buttons: 10 workspaces x 64px = a third of the 1920px panel.
-     Set explicitly so the GTK theme (Tokyonight, Nordic...) cannot resize them. */
-  padding: 0 8px;
-  min-width: 48px;
+  /* Fixed-width buttons: 32px each (20px + 6px padding per side), wide
+     enough for "10". Set explicitly so the GTK theme cannot resize them. */
+  padding: 0 6px;
+  min-width: 20px;
   color: @base06;
 }
 
